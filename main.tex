@@ -1,0 +1,199 @@
+% Template created by Christian P. C. Franssen.
+\documentclass[12pt,openright,twoside]{book}
+
+% Packages can be added here
+\usepackage{bm}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,amsbsy}
+\usepackage{algorithm}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[round]{natbib}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{bbm}
+\usepackage{rotating}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{caption}
+\captionsetup{font={stretch=1.25}} % Match \onehalfspacing
+\usepackage{subcaption}
+\usepackage{mathrsfs,booktabs,colortbl}
+\usepackage{wrapfig}
+\usepackage{makecell}
+\definecolor{mygray}{gray}{.9}
+
+\usepackage{setspace}
+\onehalfspacing % for clarity of text
+
+\usepackage[a4paper]{geometry}
+\geometry{
+    top=2.5cm,            % Set to 2.5 cm to be within the 2 cm - 3.5 cm range
+    bottom=2.5cm,         % Exact requirement for the bottom margin
+    left=3cm,             % Exact requirement for the left margin
+    right=2.5cm,          % Exact requirement for the right margin
+    headheight=2.5cm,     % Set to 2.5 cm to be within the 1.25 cm - 2.5 cm range
+    headsep=0.5cm,        % Space between header and text
+    footskip=1.25cm,      % Set to 1.25 cm as required for the footer
+}
+
+% Package for customizing headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+% Clear all header and footer fields
+\fancyhf{}
+
+% Set up the pagination style
+\fancyfoot[LE,RO]{\thepage} % Left side on even pages, right side on odd pages
+
+% Set page numbering on the right for new chapters
+\fancypagestyle{plain}{
+  \fancyhf{} % clear header and footer
+  \fancyfoot[LE,RO]{\thepage} % same as your normal pages
+  \renewcommand{\headrulewidth}{0pt} % optional: removes header line
+}
+
+\renewcommand{\rmdefault}{ptm}  % Times font
+
+% Clear page
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\begingroup
+\mbox{}
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\mbox{}\newpage\fi
+\endgroup\fi\fi}
+\makeatother
+
+% common math symbols and theorem input
+\input{math_commands.tex}
+\def\UrlBreaks{\do\/\do-}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{remark}{Remark}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{axiom}{Axiom}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newcommand{\bfitDelta}{\bm{\mathit{\Delta}}}
+
+% prefered use of 
+\numberwithin{equation}{chapter}
+
+% self-commenting
+\newcommand{\blue}[1]{#1}
+\newcommand{\red}[1]{#1}
+
+% Fill title, author, and paper titles
+\newcommand{\BookTitle}{[insert book title here]}
+\newcommand{\BookAuthor}{[insert author here]}
+\newcommand{\BirthCityAuthor}{[insert birth city author here]}
+\newcommand{\BirthCountryAuthor}{[insert birth country author here]}
+\newcommand{\FirstPaperTitle}{[paper 1 title]}
+\newcommand{\SecondPaperTitle}{[paper 2 title]}
+\newcommand{\ThirdPaperTitle}{[paper 3 title]}
+\newcommand{\FourthPaperTitle}{[paper 4 title]}
+
+\bibliographystyle{abbrvnat}  % or apa, abbrvnat, etc.
+
+\begin{document}
+
+\frontmatter
+
+% input prelims
+\input{Prelims/half_title_page}
+\input{Prelims/copyright}
+\input{Prelims/dissertation_page}
+\input{Prelims/professors_page}
+
+\chapter*{Statement of Co-Authorship}
+\input{Prelims/list_of_authors}
+
+{
+  \let\oldthepage\thepage   % Save the page counter
+  \renewcommand{\thepage}{} % Hide page number
+  \tableofcontents
+  \cleardoublepage
+  \renewcommand{\thepage}{\oldthepage} % Restore page numbering
+}
+
+% If you want a list of figures
+% \listoffigures
+
+% If you want a list of tables
+% \listoftables
+
+\chapter{[preface title]}
+\input{Preface/preface}
+
+\mainmatter
+\chapter{[introduction title]}
+\input{Introduction/introduction}
+
+\graphicspath{{Paper 1/}} % Set the graphics path
+\chapter{\FirstPaperTitle} \label{ch:fbnc}
+\input{Paper 1/paper1}
+
+\graphicspath{{Paper 2/}} % Set the graphics path
+\chapter{\SecondPaperTitle} \label{ch:mcopt}
+\input{Paper 2/paper2}
+
+\graphicspath{{Paper 3/}} % Set the graphics path
+\chapter{\ThirdPaperTitle} \label{ch:connect}
+\input{Paper 3/paper3}
+
+\graphicspath{{Paper 4/}} % Set the graphics path
+\chapter{\FourthPaperTitle} \label{ch:role_clust}
+\input{Paper 4/paper4} 
+
+\chapter{[conclusion title]} \label{ch:conclusion}
+\input{Conclusion/conclusion}
+
+\appendix
+\chapter{[appendix title 1]}
+% content here...
+\graphicspath{{Paper 1/}} % Set the graphics path
+\input{Appendices/appendix_1}
+
+\chapter{[appendix title 2]}
+\graphicspath{{Paper 2/}} % Set the graphics path
+\input{Appendices/appendix_2}
+
+\chapter{[appendix title 3]}
+\graphicspath{{Paper 3/}} % Set the graphics path
+\input{Appendices/appendix_3}
+
+\chapter{[appendix title 4]}
+\graphicspath{{Paper 4/}} % Set the graphics path
+\input{Appendices/appendix_4}
+
+\backmatter
+
+\chapter{[summary title]}
+\input{Summaries/Summary}
+
+\chapter{[Dutch summary title]}
+\input{Summaries/Samenvatting}
+
+
+\chapter{[list of publications]}
+\input{List of Publications/list_of_publications}
+
+\chapter{Acknowledgments}
+\input{Acknowledgements/acknowledgements}
+
+\addcontentsline{toc}{chapter}{Bibliography}  % Ensure it appears in TOC
+\bibliography{references} 
+
+\chapter*{ABRI dissertation series}
+\input{ABRI series/series}
+
+\end{document}
